@@ -14,6 +14,15 @@ pipeline {
             }
         }
 
+        stage('Install Vercel CLI') {
+            steps {
+                sh '''
+                    npm install -g vercel
+                    vercel --version
+                '''
+            }
+        }
+
         stage('Lint') {
             steps {
                 sh 'npm run lint'
