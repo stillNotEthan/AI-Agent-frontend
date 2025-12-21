@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    environment {
+        // 如果 Node.js 安装在非标准 PATH，可以在这里加路径，例如：
+        PATH = "/opt/homebrew/bin:${env.PATH}"
+    }
+
     stages {
         stage('Install') {
             steps {
