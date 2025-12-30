@@ -25,7 +25,7 @@ const mockUser = {
 const LoginForm = ({ setState }: Props) => {
     const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
-    const lang = useCurrentLocale();
+    const locale = useCurrentLocale();
 
     const loginSchema = z.object({
         email: z.string().email(),
@@ -45,7 +45,7 @@ const LoginForm = ({ setState }: Props) => {
     const onSubmit = async (data: LoginSchema) => {
         console.log(data);
         if (data.email === mockUser.email && data.password === mockUser.password) {
-            router.push(`${lang}/chat`);
+            router.push(`/${locale}/dashboard`);
         }
     };
 
