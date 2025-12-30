@@ -11,4 +11,4 @@ export const chat_TL = {
         send: "发送",
         thinking: "思考中..."
     }
-}
+};

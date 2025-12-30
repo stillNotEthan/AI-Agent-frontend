@@ -1,6 +1,8 @@
+import Client from "./client";
+
 const Login = () => {
     return (
-        <div>Login Page</div>
+        <Client />
     )
 }
 

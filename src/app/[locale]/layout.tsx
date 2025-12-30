@@ -1,5 +1,4 @@
-import { getScopedI18n } from "@/locales/server";
-import { headers } from "next/headers";
+import { getI18n } from "@/locales/server";
 import { LayoutClient } from "./client";
 import "../globals.css";
 
