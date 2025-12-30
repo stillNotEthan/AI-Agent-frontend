@@ -55,14 +55,14 @@ export function ChatInterface({ onSend, isAnalyzing, className }: ChatInterfaceP
                     onClick={() => setInput("Analyze Q3 sales drop")}
                     className="hover:text-purple-400 transition-colors"
                 >
-                    "Analyze Q3 sales drop"
+                    &quot;Analyze Q3 sales drop&quot;
                 </button>
                 <span>•</span>
                 <button
                     onClick={() => setInput("Show user growth by region")}
                     className="hover:text-purple-400 transition-colors"
                 >
-                    "Show user growth by region"
+                    &quot;Show user growth by region&quot;
                 </button>
             </div>
         </div>

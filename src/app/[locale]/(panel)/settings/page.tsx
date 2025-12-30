@@ -1,4 +1,4 @@
-import { Bell, Lock, User, Palette, Globe, ChevronRight } from "lucide-react";
+import { Bell, User, Palette, Globe, ChevronRight } from "lucide-react";
 
 export default function SettingsPage() {
     return (

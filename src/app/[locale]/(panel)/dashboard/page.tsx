@@ -13,7 +13,7 @@ export default function DashboardPage() {
             <div className="relative z-10 p-8 flex-1 overflow-y-auto">
                 <div className="mb-8">
                     <h1 className="text-3xl font-bold text-white mb-2">Dashboard</h1>
-                    <p className="text-zinc-400">Overview of your agent's performance.</p>
+                    <p className="text-zinc-400">Overview of your agent&apos;s performance.</p>
                 </div>
 
                 {/* Stats Grid */}

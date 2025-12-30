@@ -16,7 +16,7 @@ import {
 import { useState } from "react";
 import { useCurrentLocale } from "@/locales";
 
-interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> { }
+type SidebarProps = React.HTMLAttributes<HTMLDivElement>;
 
 export function Sidebar({ className }: SidebarProps) {
     const locale = useCurrentLocale();
