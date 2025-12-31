@@ -1,6 +1,6 @@
 import { I18nProviderClient } from "@/locales/client";
 import type { RootLayoutProps } from "./layout";
-import { ToggleLanguage } from "@/component/custom/toggle-language";
+import { ToggleLanguage } from "@/components/custom/toggle-language";
 
 export const LayoutClient = async ({
     children,

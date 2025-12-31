@@ -15,6 +15,8 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { useCurrentLocale } from "@/locales";
+import { useAuthStore } from "@/store/authStore";
+import { useRouter } from "next/navigation";
 
 type SidebarProps = React.HTMLAttributes<HTMLDivElement>;
 
@@ -22,6 +24,13 @@ export function Sidebar({ className }: SidebarProps) {
     const locale = useCurrentLocale();
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false);
+    const { resetAccount } = useAuthStore();
+    const router = useRouter();
+
+    const logout = () => {
+        resetAccount();
+        router.push(`/${locale}/login`);
+    }
 
     const routes = [
         {
@@ -132,7 +141,7 @@ export function Sidebar({ className }: SidebarProps) {
                     </div>
 
                     {/* User Profile / Footer (Placeholder) */}
-                    <div className="mt-auto pt-6 border-t border-white/5">
+                    <div className="flex flex-row items-center justify-between mt-auto pt-6 border-t border-white/5">
                         <div className="flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-white/5 cursor-pointer transition-colors group">
                             <div className="w-8 h-8 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center text-xs font-medium text-zinc-400 group-hover:border-violet-500/50 transition-colors">
                                 EW
@@ -141,6 +150,9 @@ export function Sidebar({ className }: SidebarProps) {
                                 <span className="text-sm font-medium text-zinc-300 group-hover:text-white transition-colors">Ethan Wang</span>
                                 <span className="text-xs text-zinc-600">Pro Plan</span>
                             </div>
+                        </div>
+                        <div className="text-md text-zinc-600 cursor-pointer hover:text-zinc-400 transition-colors" onClick={logout}>
+                            log out
                         </div>
                     </div>
                 </div>

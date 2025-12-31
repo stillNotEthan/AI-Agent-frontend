@@ -12,6 +12,7 @@ import { useState } from "react";
 import { AuthActionState } from ".";
 import { useRouter } from "next/navigation";
 import { useCurrentLocale } from "@/locales";
+import { useAuthStore } from "@/store/authStore";
 
 interface Props {
     setState: (state: AuthActionState) => void;
@@ -23,6 +24,7 @@ const mockUser = {
 }
 
 const LoginForm = ({ setState }: Props) => {
+    const { updateAccount } = useAuthStore();
     const [showPassword, setShowPassword] = useState(false);
     const router = useRouter();
     const locale = useCurrentLocale();
@@ -45,6 +47,11 @@ const LoginForm = ({ setState }: Props) => {
     const onSubmit = async (data: LoginSchema) => {
         console.log(data);
         if (data.email === mockUser.email && data.password === mockUser.password) {
+            updateAccount({
+                name: "Ethan Wang",
+                email: "ethanwang627@gmail.com",
+                token: "aaabbb",
+            });
             router.push(`/${locale}/dashboard`);
         }
     };

@@ -175,12 +175,12 @@ const RegisterForm = ({ setState }: Props) => {
                     </Button>
                 </div>
 
-                <p className="text-center text-sm text-slate-400">
+                <div className="text-center text-sm text-slate-400">
                     Already have an account?{" "}
                     <div className="cursor-pointer text-indigo-400 hover:text-indigo-300 inline-block" onClick={() => setState("login")}>
                         Sign in
                     </div>
-                </p>
+                </div>
             </div>
         </div>
     );
