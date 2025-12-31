@@ -1,4 +1,5 @@
 import { chat_TL } from "./app/chat";
+import { auth_TL } from "./app/auth";
 
 export default {
     config: {
@@ -10,6 +11,7 @@ export default {
         }
     },
     pages: {
-        chat: chat_TL.zh
+        chat: chat_TL.zh,
+        auth: auth_TL.zh
     }
 } as const;

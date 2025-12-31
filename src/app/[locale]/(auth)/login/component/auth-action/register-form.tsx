@@ -11,20 +11,23 @@ import { LuEye, LuEyeOff } from "react-icons/lu";
 import { useState } from "react";
 import { AuthActionState } from ".";
 
+import { useScopedI18n } from "@/locales";
+
 interface Props {
     setState: (state: AuthActionState) => void;
 }
 
 const RegisterForm = ({ setState }: Props) => {
     const [showPassword, setShowPassword] = useState(false);
+    const t = useScopedI18n("pages.auth.register");
 
     const registerSchema = z.object({
-        name: z.string().min(2, "Name must be at least 2 characters"),
-        email: z.string().email("Invalid email address"),
-        password: z.string().min(6, "Password must be at least 6 characters"),
+        name: z.string().min(2, t("nameMinLength")),
+        email: z.string().email(t("invalidEmail")),
+        password: z.string().min(6, t("passwordMinLength")),
         confirmPassword: z.string()
     }).refine((data) => data.password === data.confirmPassword, {
-        message: "Passwords don't match",
+        message: t("passwordMismatch"),
         path: ["confirmPassword"],
     });
 
@@ -48,10 +51,10 @@ const RegisterForm = ({ setState }: Props) => {
         <div className="w-full max-w-md space-y-8 relative z-10 border border-slate-800 p-10 rounded-lg backdrop-blur-lg">
             <div className="text-center lg:text-left">
                 <h2 className="text-3xl font-bold tracking-tight text-white">
-                    Create an account
+                    {t("title")}
                 </h2>
                 <p className="mt-2 text-sm text-slate-400">
-                    Enter your details to get started
+                    {t("subtitle")}
                 </p>
             </div>
 
@@ -64,11 +67,11 @@ const RegisterForm = ({ setState }: Props) => {
                                 name="name"
                                 render={({ field }) => (
                                     <FormItem className="flex flex-col gap-2">
-                                        <FormLabel className="text-slate-200">Full Name</FormLabel>
+                                        <FormLabel className="text-slate-200">{t("nameLabel")}</FormLabel>
                                         <FormControl>
                                             <Input
                                                 {...field}
-                                                placeholder="John Doe"
+                                                placeholder={t("namePlaceholder")}
                                                 className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus-visible:ring-indigo-500 focus-visible:border-indigo-500"
                                             />
                                         </FormControl>
@@ -81,11 +84,11 @@ const RegisterForm = ({ setState }: Props) => {
                                 name="email"
                                 render={({ field }) => (
                                     <FormItem className="flex flex-col gap-2">
-                                        <FormLabel className="text-slate-200">Email address</FormLabel>
+                                        <FormLabel className="text-slate-200">{t("emailLabel")}</FormLabel>
                                         <FormControl>
                                             <Input
                                                 {...field}
-                                                placeholder="you@example.com"
+                                                placeholder={t("emailPlaceholder")}
                                                 className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus-visible:ring-indigo-500 focus-visible:border-indigo-500"
                                             />
                                         </FormControl>
@@ -98,13 +101,13 @@ const RegisterForm = ({ setState }: Props) => {
                                 name="password"
                                 render={({ field }) => (
                                     <FormItem className="flex flex-col gap-2">
-                                        <FormLabel className="text-slate-200">Password</FormLabel>
+                                        <FormLabel className="text-slate-200">{t("passwordLabel")}</FormLabel>
                                         <FormControl>
                                             <div className="relative">
                                                 <Input
                                                     type={showPassword ? "text" : "password"}
                                                     {...field}
-                                                    placeholder="••••••••"
+                                                    placeholder={t("passwordPlaceholder")}
                                                     className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus-visible:ring-indigo-500 focus-visible:border-indigo-500 pr-10"
                                                 />
                                                 <button
@@ -129,12 +132,12 @@ const RegisterForm = ({ setState }: Props) => {
                                 name="confirmPassword"
                                 render={({ field }) => (
                                     <FormItem className="flex flex-col gap-2">
-                                        <FormLabel className="text-slate-200">Confirm Password</FormLabel>
+                                        <FormLabel className="text-slate-200">{t("confirmPasswordLabel")}</FormLabel>
                                         <FormControl>
                                             <Input
                                                 type={showPassword ? "text" : "password"}
                                                 {...field}
-                                                placeholder="••••••••"
+                                                placeholder={t("confirmPasswordPlaceholder")}
                                                 className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus-visible:ring-indigo-500 focus-visible:border-indigo-500"
                                             />
                                         </FormControl>
@@ -148,7 +151,7 @@ const RegisterForm = ({ setState }: Props) => {
                             type="submit"
                             className="w-full bg-indigo-600 hover:bg-indigo-500 text-white"
                         >
-                            Sign up
+                            {t("signUpButton")}
                         </Button>
                     </form>
                 </Form>
@@ -159,7 +162,7 @@ const RegisterForm = ({ setState }: Props) => {
                     </div>
                     <div className="relative flex justify-center text-sm">
                         <span className="bg-slate-950 px-2 text-slate-400">
-                            Or continue with
+                            {t("orContinueWith")}
                         </span>
                     </div>
                 </div>
@@ -167,18 +170,18 @@ const RegisterForm = ({ setState }: Props) => {
                 <div className="grid grid-cols-2 gap-3">
                     <Button variant="outline" className="w-full border-white/10 bg-white/5 text-white hover:bg-white/10 hover:text-white">
                         <FaGoogle className="mr-2 h-4 w-4" />
-                        Google
+                        {t("googleButton")}
                     </Button>
                     <Button variant="outline" className="w-full border-white/10 bg-white/5 text-white hover:bg-white/10 hover:text-white">
                         <FaGithub className="mr-2 h-4 w-4" />
-                        GitHub
+                        {t("githubButton")}
                     </Button>
                 </div>
 
                 <div className="text-center text-sm text-slate-400">
-                    Already have an account?{" "}
+                    {t("hasAccount")}{" "}
                     <div className="cursor-pointer text-indigo-400 hover:text-indigo-300 inline-block" onClick={() => setState("login")}>
-                        Sign in
+                        {t("signInLink")}
                     </div>
                 </div>
             </div>
