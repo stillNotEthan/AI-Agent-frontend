@@ -1,6 +1,6 @@
 "use client";
 
-import { Sidebar } from "@/components/sidebar";
+import { Sidebar } from "@/components/custom/sidebar/sidebar";
 
 const ClientLayout = ({ children }: { children: React.ReactNode }) => {
     return (
