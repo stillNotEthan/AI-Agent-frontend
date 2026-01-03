@@ -61,7 +61,18 @@ export const auth_TL = {
             codeMinLength: "Verification code must be 6 characters",
         },
         carousel: {
-
+            slide1: {
+                title: "Unlock the Power of AI",
+                description: "Experience the next generation of intelligent agents.",
+            },
+            slide2: {
+                title: "Seamless Integration",
+                description: "Connect your workflows with ease and efficiency.",
+            },
+            slide3: {
+                title: "Secure & Reliable",
+                description: "Enterprise-grade security for your peace of mind.",
+            },
         }
     },
     zh: {
@@ -124,6 +135,21 @@ export const auth_TL = {
             // 验证错误
             invalidEmail: "邮箱地址无效",
             codeMinLength: "验证码必须是6个字符",
+        },
+        // 轮播图
+        carousel: {
+            slide1: {
+                title: "解锁 AI 的力量",
+                description: "体验下一代智能代理。",
+            },
+            slide2: {
+                title: "无缝集成",
+                description: "轻松高效地连接您的工作流程。",
+            },
+            slide3: {
+                title: "安全可靠",
+                description: "企业级安全，让您高枕无忧。",
+            },
         },
     }
 }
