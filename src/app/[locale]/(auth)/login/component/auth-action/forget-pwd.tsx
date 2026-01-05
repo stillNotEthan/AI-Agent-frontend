@@ -7,7 +7,12 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { AuthActionState } from ".";
-
+import {
+    resetPasswordAPI,
+    sendVCodeAPI
+} from "@/api/auth";
+import { ResponseStatusCode } from "@/api/types";
+import { toast } from "sonner";
 import { useScopedI18n } from "@/locales";
 
 interface Props {
@@ -20,6 +25,7 @@ const ForgetPwd = ({ setState }: Props) => {
     const forgetPwdSchema = z.object({
         email: z.string().email(t("invalidEmail")),
         code: z.string().min(6, t("codeMinLength")),
+        newPwd: z.string().min(6, "Password must be at least 6 characters long"),
     });
 
     type ForgetPwdSchema = z.infer<typeof forgetPwdSchema>;
@@ -29,12 +35,32 @@ const ForgetPwd = ({ setState }: Props) => {
         defaultValues: {
             email: "",
             code: "",
+            newPwd: "",
         },
     });
 
     const onSubmit = async (data: ForgetPwdSchema) => {
-        console.log(data);
+        const { code, message } = await resetPasswordAPI({
+            email: data.email,
+            vCode: data.code,
+            newPwd: data.newPwd
+        });
+        if (code === ResponseStatusCode.OPERATING_SUCCESSFULLY) {
+            toast.success(message);
+            setState("login");
+        } else {
+            toast.error(message);
+        }
     };
+
+    const sendVCode = async (email: string) => {
+        const { code, message } = await sendVCodeAPI(email);
+        if (code === ResponseStatusCode.OPERATING_SUCCESSFULLY) {
+            toast.success(message);
+        } else {
+            toast.error(message);
+        }
+    }
 
     return (
         <div className="w-full max-w-md space-y-8 relative z-10 border border-slate-800 p-10 rounded-lg backdrop-blur-lg">
@@ -64,7 +90,12 @@ const ForgetPwd = ({ setState }: Props) => {
                                                     placeholder={t("emailPlaceholder")}
                                                     className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus-visible:ring-indigo-500 focus-visible:border-indigo-500"
                                                 />
-                                                <Button type="button" variant="outline" className="border-white/10 bg-white/5 text-white hover:bg-white/10 hover:text-white whitespace-nowrap">
+                                                <Button
+                                                    type="button"
+                                                    variant="outline"
+                                                    className="border-white/10 bg-white/5 text-white hover:bg-white/10 hover:text-white whitespace-nowrap"
+                                                    onClick={() => sendVCode(field.value)}
+                                                >
                                                     {t("getCodeButton")}
                                                 </Button>
                                             </div>
@@ -83,6 +114,23 @@ const ForgetPwd = ({ setState }: Props) => {
                                             <Input
                                                 {...field}
                                                 placeholder={t("codePlaceholder")}
+                                                className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus-visible:ring-indigo-500 focus-visible:border-indigo-500"
+                                            />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="newPwd"
+                                render={({ field }) => (
+                                    <FormItem className="flex flex-col gap-2">
+                                        <FormLabel className="text-slate-200">{t("newPwdLabel")}</FormLabel>
+                                        <FormControl>
+                                            <Input
+                                                {...field}
+                                                placeholder={t("newPwdPlaceholder")}
                                                 className="bg-white/5 border-white/10 text-white placeholder:text-slate-500 focus-visible:ring-indigo-500 focus-visible:border-indigo-500"
                                             />
                                         </FormControl>

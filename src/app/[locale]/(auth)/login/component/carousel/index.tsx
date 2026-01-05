@@ -8,19 +8,19 @@ const slides = [
         id: 1,
         title: "Unlock the Power of AI",
         description: "Experience the next generation of intelligent agents.",
-        color: "from-violet-600 via-indigo-600 to-purple-800",
+        color: "from-slate-900 via-indigo-950 to-slate-950",
     },
     {
         id: 2,
         title: "Seamless Integration",
         description: "Connect your workflows with ease and efficiency.",
-        color: "from-blue-600 via-cyan-600 to-teal-700",
+        color: "from-slate-900 via-slate-900 to-slate-950",
     },
     {
         id: 3,
         title: "Secure & Reliable",
         description: "Enterprise-grade security for your peace of mind.",
-        color: "from-emerald-600 via-green-600 to-lime-700",
+        color: "from-slate-900 via-emerald-950 to-slate-950",
     },
 ];
 
@@ -35,7 +35,7 @@ const Carousel = () => {
     }, []);
 
     return (
-        <div className="hidden w-1/2 relative overflow-hidden lg:flex flex-col justify-between p-16">
+        <div className="relative h-full w-full overflow-hidden flex flex-col justify-between p-16">
             {/* Background Animation */}
             <div className="absolute inset-0 z-0">
                 {slides.map((slide, index) => (
@@ -56,7 +56,7 @@ const Carousel = () => {
                     </div>
                 ))}
                 {/* Gradient Overlay for Smooth Transition */}
-                <div className="absolute top-0 right-0 bottom-0 w-64 bg-gradient-to-l from-slate-950 to-transparent z-10" />
+                <div className="absolute inset-y-0 right-0 w-full bg-gradient-to-l from-slate-950 via-slate-950/80 to-transparent z-10" />
             </div>
 
             {/* Interactive Particles */}

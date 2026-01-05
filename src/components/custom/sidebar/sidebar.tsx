@@ -67,14 +67,12 @@ export function Sidebar({ className }: SidebarProps) {
 
     return (
         <>
-            {/* Mobile Trigger */}
             <div className="md:hidden fixed top-4 left-4 z-50">
                 <Button variant="ghost" size="icon" className="text-white hover:bg-white/10" onClick={() => setIsOpen(!isOpen)}>
                     {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
                 </Button>
             </div>
 
-            {/* Sidebar Container */}
             <div
                 className={cn(
                     "relative flex flex-col h-full w-72 fixed inset-y-0 left-0 z-40 transition-transform duration-300 ease-in-out md:translate-x-0 md:static",
@@ -83,14 +81,12 @@ export function Sidebar({ className }: SidebarProps) {
                     className
                 )}
             >
-                {/* Ambient Background Glow */}
                 <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
                     <div className="absolute top-[-10%] left-[-20%] w-[80%] h-[40%] bg-violet-900/10 rounded-full blur-[80px]"></div>
                     <div className="absolute bottom-[-10%] right-[-20%] w-[80%] h-[40%] bg-fuchsia-900/10 rounded-full blur-[80px]"></div>
                 </div>
 
                 <div className="relative flex flex-col h-full px-4 py-6">
-                    {/* Logo */}
                     <Link href={`/${locale}/dashboard`} className="flex items-center gap-3 px-2 mb-10 group">
                         <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 to-fuchsia-600 shadow-lg shadow-violet-500/20 group-hover:scale-105 transition-transform duration-300">
                             <span className="text-white font-bold text-lg">AI</span>
@@ -105,7 +101,6 @@ export function Sidebar({ className }: SidebarProps) {
                         </div>
                     </Link>
 
-                    {/* Navigation */}
                     <div className="flex-1 space-y-1">
                         {routes.map((route) => {
                             const isActive = pathname === route.href;
@@ -120,7 +115,6 @@ export function Sidebar({ className }: SidebarProps) {
                                             : "hover:text-white hover:bg-white/5"
                                     )}
                                 >
-                                    {/* Active Indicator */}
                                     {isActive && (
                                         <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-gradient-to-b from-violet-500 to-fuchsia-500 rounded-r-full shadow-[0_0_12px_rgba(139,92,246,0.5)]" />
                                     )}
@@ -133,14 +127,12 @@ export function Sidebar({ className }: SidebarProps) {
                                     />
                                     <span className="font-medium text-sm z-10">{route.label}</span>
 
-                                    {/* Hover Glow Effect */}
                                     <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/5 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 pointer-events-none" />
                                 </Link>
                             );
                         })}
                     </div>
 
-                    {/* User Profile / Footer (Placeholder) */}
                     <div className="flex flex-row items-center justify-between mt-auto pt-6 border-t border-white/5">
                         <div className="flex items-center gap-3 px-2 py-2 rounded-xl hover:bg-white/5 cursor-pointer transition-colors group">
                             <div className="w-8 h-8 rounded-full bg-zinc-800 border border-white/10 flex items-center justify-center text-xs font-medium text-zinc-400 group-hover:border-violet-500/50 transition-colors">
@@ -158,7 +150,6 @@ export function Sidebar({ className }: SidebarProps) {
                 </div>
             </div>
 
-            {/* Overlay for mobile */}
             {isOpen && (
                 <div
                     className="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 md:hidden"

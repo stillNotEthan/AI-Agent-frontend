@@ -11,7 +11,6 @@ const ClientLayout = ({ children }: { children: React.ReactNode }) => {
             <main className="md:pl-72 h-full">
                 {children}
             </main>
-            {/* Mobile Sidebar is handled within the Sidebar component itself, but we need to ensure it renders */}
             <div className="md:hidden">
                 <Sidebar />
             </div>

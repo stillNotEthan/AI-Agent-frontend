@@ -14,7 +14,7 @@ interface Action {
     resetAccount: () => void;
 }
 
-export const AUTH_STORATE_KEY = "E-AI-AUTH";
+export const AUTH_STORAGE_KEY = "E-AI-AUTH";
 export const AUTH_COOKIES_KEY = "E-AI-COOKIE-AUTH";
 
 export const useAuthStore = create<AccountData & Action>()(
@@ -28,11 +28,11 @@ export const useAuthStore = create<AccountData & Action>()(
             resetAccount: () => {
                 set(initData);
                 deleteCookie(AUTH_COOKIES_KEY);
-                localStorage.removeItem(AUTH_STORATE_KEY);
+                localStorage.removeItem(AUTH_STORAGE_KEY);
             },
         }),
         {
-            name: AUTH_STORATE_KEY
+            name: AUTH_STORAGE_KEY
         },
     )
 )
