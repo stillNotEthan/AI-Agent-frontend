@@ -6,7 +6,8 @@ import { AUTH_COOKIES_KEY } from "./store/authStore";
 
 const IGNORE_AUTH_PATHS = [
     "/",
-    "/login"
+    "/login",
+    "/auth"
 ]
 
 const I18nMiddleware = createI18nMiddleware({

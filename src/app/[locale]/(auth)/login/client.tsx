@@ -11,12 +11,14 @@ const Client = () => {
     const lang = useCurrentLocale();
 
     return (
-        <div className="flex min-h-screen w-full bg-slate-950 text-white selection:bg-indigo-500/30">
+        <div className="flex min-h-screen w-full bg-slate-950 text-white selection:bg-indigo-500/30 overflow-hidden">
             {/* Left Side - Carousel */}
-            <Carousel />
+            <div className="hidden lg:block w-1/2 -mr-px relative z-10">
+                <Carousel />
+            </div>
 
             {/* Right Side - Login Form */}
-            <div className="flex w-full items-center justify-center lg:w-1/2 px-4 py-12 sm:px-6 lg:px-8 relative bg-slate-950">
+            <div className="flex w-full items-center justify-center lg:w-1/2 px-4 py-12 sm:px-6 lg:px-8 relative bg-slate-950 z-20">
                 {/* Subtle Background Pattern for Right Side */}
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
                     <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.02]" />

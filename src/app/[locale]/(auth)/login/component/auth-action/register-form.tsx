@@ -10,8 +10,10 @@ import { FaGithub, FaGoogle } from "react-icons/fa";
 import { LuEye, LuEyeOff } from "react-icons/lu";
 import { useState } from "react";
 import { AuthActionState } from ".";
-
 import { useScopedI18n } from "@/locales";
+import { createAccountAPI } from "@/api/auth";
+import { ResponseStatusCode } from "@/api/types";
+import { toast } from "sonner";
 
 interface Props {
     setState: (state: AuthActionState) => void;
@@ -44,7 +46,13 @@ const RegisterForm = ({ setState }: Props) => {
     });
 
     const onSubmit = async (data: RegisterSchema) => {
-        console.log(data);
+        const { code, message } = await createAccountAPI(data);
+        if (code !== ResponseStatusCode.OPERATING_SUCCESSFULLY) {
+            toast(message);
+            return;
+        }
+        toast("Register successfully");
+        setState("login");
     };
 
     return (

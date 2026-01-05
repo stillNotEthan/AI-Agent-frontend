@@ -13,6 +13,9 @@ import { AuthActionState } from ".";
 import { useRouter } from "next/navigation";
 import { useCurrentLocale, useScopedI18n } from "@/locales";
 import { useAuthStore } from "@/store/authStore";
+import { loginAPI } from "@/api/auth";
+import { ResponseStatusCode } from "@/api/types";
+import { toast } from "sonner";
 
 interface Props {
     setState: (state: AuthActionState) => void;
@@ -46,15 +49,20 @@ const LoginForm = ({ setState }: Props) => {
     });
 
     const onSubmit = async (data: LoginSchema) => {
-        console.log(data);
-        if (data.email === mockUser.email && data.password === mockUser.password) {
-            updateAccount({
-                name: "Ethan Wang",
-                email: "ethanwang627@gmail.com",
-                token: "aaabbb",
-            });
-            router.push(`/${locale}/dashboard`);
+        console.log(data, '123');
+        const { code, message, data: authData } = await loginAPI(data);
+        if (code !== ResponseStatusCode.OPERATING_SUCCESSFULLY) {
+            toast(message);
+            return;
         }
+        toast("Login successfully");
+        setState("login");
+        updateAccount({
+            name: authData.name,
+            email: authData.email,
+            token: authData.access_token,
+        });
+        router.push(`/${locale}/dashboard`);
     };
 
     return (
